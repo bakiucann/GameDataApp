@@ -22,9 +22,11 @@ class GameDetailViewModel {
         self.game = game
     }
 
-    func addToFavorites() {
-        coreDataManager.addToFavorites(gameId: game.id)
-    }
+  func addToFavorites() {
+      print(game)
+      coreDataManager.addToFavorites(game: game)
+  }
+
 
     func removeFromFavorites() {
         coreDataManager.removeFromFavorites(gameId: game.id)

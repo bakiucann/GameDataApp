@@ -15,6 +15,10 @@ class HomeViewController: UIViewController {
     private let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     private let pageControl = UIPageControl()
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+  private var collectionViewTopConstraint: NSLayoutConstraint?
+  public var isSearching: Bool = false
+
+
 
     // MARK: - Lifecycle Methods
 
@@ -36,22 +40,27 @@ class HomeViewController: UIViewController {
         navigationItem.titleView = searchBar
     }
 
-    private func setupViews() {
-        view.backgroundColor = .systemBackground
+  private func setupViews() {
+      view.backgroundColor = .systemBackground
 
-        addChild(pageViewController)
-        view.addSubview(pageViewController.view)
-        pageViewController.didMove(toParent: self)
+      addChild(pageViewController)
+      view.addSubview(pageViewController.view)
+      pageViewController.didMove(toParent: self)
 
-        view.addSubview(pageControl)
+      view.addSubview(pageControl)
 
-        collectionView.backgroundColor = .systemBackground
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(GameCell.self, forCellWithReuseIdentifier: GameCell.reuseIdentifier)
+      collectionView.backgroundColor = .systemBackground
+      collectionView.dataSource = self
+      collectionView.delegate = self
+      collectionView.register(GameCell.self, forCellWithReuseIdentifier: GameCell.reuseIdentifier)
+      collectionViewTopConstraint = collectionView.topAnchor.constraint(equalTo: pageControl.bottomAnchor)
 
-        view.addSubview(collectionView)
-    }
+      collectionView.isHidden = true
+
+
+      view.addSubview(collectionView)
+  }
+
 
     private func setupConstraints() {
         pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -67,16 +76,18 @@ class HomeViewController: UIViewController {
 
             pageControl.topAnchor.constraint(equalTo: pageViewController.view.bottomAnchor),
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            collectionViewTopConstraint!,
 
             collectionView.topAnchor.constraint(equalTo: pageControl.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            
         ])
     }
 
     private func setupViewModel() {
-        viewModel.reloadTableView = { [weak self] in
+        viewModel.reloadCollectionView = { [weak self] in
             DispatchQueue.main.async {
                 self?.updatePageViewController()
                 self?.collectionView.reloadData()
@@ -94,7 +105,7 @@ class HomeViewController: UIViewController {
         guard let firstGame = viewModel.filteredGames.first else { return }
 
         let firstGamePageView = createGamePageView(for: firstGame)
-        pageViewController.setViewControllers([firstGamePageView], direction: .forward, animated: false, completion: nil)
+        pageViewController.setViewControllers([firstGamePageView], direction: .forward, animated: true, completion: nil)
 
         pageControl.numberOfPages = min(viewModel.filteredGames.count, 3)
         pageControl.pageIndicatorTintColor = UIColor.gray
@@ -135,40 +146,73 @@ class HomeViewController: UIViewController {
         navigationController?.pushViewController(gameDetailViewController, animated: true)
     }
 
-    private func handleEmptyState() {
-        if viewModel.filteredGames.isEmpty {
-            pageViewController.view.isHidden = true
-            collectionView.isHidden = true
-            pageControl.isHidden = true
+  private func handleEmptyState() {
+      if viewModel.filteredGames.isEmpty {
+          collectionView.isHidden = true
+          view.subviews.filter { $0 is UILabel }.forEach { $0.removeFromSuperview() }
 
-            let messageLabel = UILabel()
-            messageLabel.text = "Üzgünüz, aradığınız oyun bulunamadı!"
-            messageLabel.textAlignment = .center
-            messageLabel.textColor = .black
-            messageLabel.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(messageLabel)
+          let messageLabel = UILabel()
+          messageLabel.text = "Üzgünüz, aradığınız oyun bulunamadı!"
+          messageLabel.textAlignment = .center
+          messageLabel.textColor = .black
+          messageLabel.translatesAutoresizingMaskIntoConstraints = false
+          view.addSubview(messageLabel)
 
-            NSLayoutConstraint.activate([
-                messageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                messageLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-            ])
-        } else {
-            pageViewController.view.isHidden = false
-            collectionView.isHidden = false
-            pageControl.isHidden = false
-            view.subviews.filter { $0 is UILabel }.forEach { $0.removeFromSuperview() }
-        }
-    }
+          NSLayoutConstraint.activate([
+              messageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+              messageLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+          ])
+      } else {
+          collectionView.isHidden = false
+          view.subviews.filter { $0 is UILabel }.forEach { $0.removeFromSuperview() }
+      }
+
+      if searchBarIsEmpty() {
+          pageViewController.view.isHidden = false
+          pageControl.isHidden = false
+      } else {
+          pageViewController.view.isHidden = true
+          pageControl.isHidden = true
+      }
+  }
+
+
+  private func searchBarIsEmpty() -> Bool {
+      if let searchBar = navigationItem.titleView as? UISearchBar, let searchText = searchBar.text {
+          return searchText.isEmpty
+      }
+      return true
+  }
+
 }
 
 // MARK: - UISearchBarDelegate
 
 extension HomeViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            viewModel.filterGames(with: "")
-        }
-    }
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+      if searchText.isEmpty {
+          isSearching = false
+          viewModel.filterGames(with: "")
+      } else if searchText.count >= 3 {
+          isSearching = true
+          viewModel.filterGames(with: searchText)
+      }
+      handleEmptyState()
+      collectionView.reloadData()
+  }
+  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+      collectionViewTopConstraint?.isActive = false
+      collectionViewTopConstraint = collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+      collectionViewTopConstraint?.isActive = true
+    searchBar.showsCancelButton = true
+
+      UIView.animate(withDuration: 0.25) {
+          self.view.layoutIfNeeded()
+      }
+  }
+  func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+      searchBar.showsCancelButton = false
+  }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = searchBar.text {
@@ -176,7 +220,23 @@ extension HomeViewController: UISearchBarDelegate {
         }
     }
 
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-    }
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+      searchBar.showsCancelButton = false
+      searchBar.text = ""
+      searchBar.resignFirstResponder()
+
+      collectionViewTopConstraint?.isActive = false
+      collectionViewTopConstraint = collectionView.topAnchor.constraint(equalTo: pageControl.bottomAnchor)
+      collectionViewTopConstraint?.isActive = true
+
+      UIView.animate(withDuration: 0.25) {
+          self.view.layoutIfNeeded()
+      }
+
+      viewModel.filterGames(with: "")
+      collectionView.reloadData()
+    isSearching = false
+      handleEmptyState()
+  }
+
 }

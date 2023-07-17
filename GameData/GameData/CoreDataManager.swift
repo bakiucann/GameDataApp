@@ -13,7 +13,7 @@ class CoreDataManager {
     private init() {}
 
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "GameData") // CoreData model dosyasının adını buraya yazın
+        let container = NSPersistentContainer(name: "GameData")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -26,11 +26,15 @@ class CoreDataManager {
         return persistentContainer.viewContext
     }
 
-    func addToFavorites(gameId: Int) {
-        let favorite = FavoriteGame(context: viewContext)
-        favorite.gameId = Int32(gameId)
-        saveContext()
-    }
+  func addToFavorites(game: Game) {
+      let favorite = FavoriteGame(context: viewContext)
+      favorite.gameId = Int32(game.id)
+      favorite.name = game.name
+      favorite.backgroundImage = game.backgroundImage
+      favorite.rating = game.rating ?? 0
+      saveContext()
+  }
+
 
     func removeFromFavorites(gameId: Int) {
         let fetchRequest: NSFetchRequest<FavoriteGame> = FavoriteGame.fetchRequest()
@@ -65,9 +69,8 @@ class CoreDataManager {
 
       do {
           let favorites = try viewContext.fetch(fetchRequest)
-          let games = favorites.compactMap { favorite -> Game? in
-              guard let gameId = Int(exactly: favorite.gameId) else { return nil }
-              return Game(id: gameId, name: "", released: nil, backgroundImage: nil, rating: nil, ratingTop: nil)
+          let games = favorites.map { favorite -> Game in
+              return Game(id: Int(favorite.gameId), name: favorite.name ?? "", released: nil, backgroundImage: favorite.backgroundImage, rating: favorite.rating, ratingTop: nil)
           }
           return games
       } catch {

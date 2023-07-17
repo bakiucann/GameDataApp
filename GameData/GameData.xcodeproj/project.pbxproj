@@ -33,6 +33,7 @@
 		2D2FFFB62A60C08500C4F9CF /* HomeViewController+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FFFB52A60C08500C4F9CF /* HomeViewController+UICollectionView.swift */; };
 		2D2FFFB82A60C09400C4F9CF /* HomeViewController+UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FFFB72A60C09400C4F9CF /* HomeViewController+UIPageViewController.swift */; };
 		2D2FFFBB2A61D80A00C4F9CF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FFFBA2A61D80A00C4F9CF /* CoreDataManager.swift */; };
+		2DC8CFFF2A6439DC00F0D009 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC8CFFE2A6439DC00F0D009 /* FavoriteCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		2D2FFFB52A60C08500C4F9CF /* HomeViewController+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+UICollectionView.swift"; sourceTree = "<group>"; };
 		2D2FFFB72A60C09400C4F9CF /* HomeViewController+UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+UIPageViewController.swift"; sourceTree = "<group>"; };
 		2D2FFFBA2A61D80A00C4F9CF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		2DC8CFFE2A6439DC00F0D009 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +295,7 @@
 			children = (
 				2D2FFF4D2A5DDC6800C4F9CF /* FavoritesViewModel.swift */,
 				2D2FFF452A5DDC3700C4F9CF /* FavoritesView.swift */,
+				2DC8CFFE2A6439DC00F0D009 /* FavoriteCell.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				2D2FFF442A5DDC2A00C4F9CF /* HomeView.swift in Sources */,
 				2D2FFF0A2A5DDA2600C4F9CF /* AppDelegate.swift in Sources */,
 				2D2FFF0C2A5DDA2600C4F9CF /* SceneDelegate.swift in Sources */,
+				2DC8CFFF2A6439DC00F0D009 /* FavoriteCell.swift in Sources */,
 				2D2FFF642A5EBD5A00C4F9CF /* GamePageView.swift in Sources */,
 				2D2FFF5A2A5DFAD200C4F9CF /* Reachability.swift in Sources */,
 				2D2FFF582A5DFACA00C4F9CF /* Constants.swift in Sources */,

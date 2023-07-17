@@ -5,8 +5,6 @@
 //  Created by Baki Uçan on 11.07.2023.
 //
 
-// FavoritesViewController.swift
-
 import UIKit
 
 class FavoritesViewController: UIViewController {
@@ -23,7 +21,7 @@ class FavoritesViewController: UIViewController {
         collectionView.backgroundColor = .systemBackground
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(GameCell.self, forCellWithReuseIdentifier: GameCell.reuseIdentifier)
+        collectionView.register(FavoriteCell.self, forCellWithReuseIdentifier: FavoriteCell.reuseIdentifier)
 
         view.addSubview(collectionView)
 
@@ -54,7 +52,7 @@ extension FavoritesViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameCell.reuseIdentifier, for: indexPath) as! GameCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCell.reuseIdentifier, for: indexPath) as! FavoriteCell
         cell.configure(with: viewModel.favoriteGames[indexPath.item])
         return cell
     }
@@ -64,7 +62,7 @@ extension FavoritesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let padding: CGFloat = 16
         let itemWidth: CGFloat = (collectionView.bounds.width - padding * 3) / 2
-        let itemHeight: CGFloat = itemWidth * 1.5
+      let itemHeight: CGFloat = itemWidth * 0.9
         return CGSize(width: itemWidth, height: itemHeight)
     }
 

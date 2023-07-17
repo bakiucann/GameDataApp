@@ -35,6 +35,23 @@ class GameDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupViews()
+        setupConstraints()
+        setupFonts()
+        setupImageSize()
+        setupFavoriteButton()
+
+        viewModel.reloadView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.updateView()
+                self?.updateFavoriteButton()
+            }
+        }
+
+        viewModel.fetchGameDetail()
+    }
+
+    private func setupViews() {
         view.backgroundColor = .systemBackground
 
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +71,9 @@ class GameDetailViewController: UIViewController {
         contentView.addSubview(metacriticLabel)
         contentView.addSubview(releaseDateLabel)
         contentView.addSubview(descriptionLabel)
+    }
 
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -93,7 +112,9 @@ class GameDetailViewController: UIViewController {
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
+    }
 
+    private func setupFonts() {
         nameLabel.font = UIFont.preferredFont(forTextStyle:.headline)
         ratingLabel.font = UIFont.preferredFont(forTextStyle:.subheadline)
         ratingLabel.textColor = .secondaryLabel
@@ -103,20 +124,16 @@ class GameDetailViewController: UIViewController {
         releaseDateLabel.textColor = .secondaryLabel
         descriptionLabel.font = UIFont.preferredFont(forTextStyle:.body)
         descriptionLabel.numberOfLines = 0
+    }
+
+    private func setupImageSize() {
         imageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+    }
 
+    private func setupFavoriteButton() {
         favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteButtonTapped))
         navigationItem.rightBarButtonItem = favoriteButton
-
-        viewModel.reloadView = { [weak self] in
-            DispatchQueue.main.async {
-                self?.updateView()
-                self?.updateFavoriteButton()
-            }
-        }
-
-        viewModel.fetchGameDetail()
     }
 
     private func updateView() {

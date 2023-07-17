@@ -1,14 +1,14 @@
 //
-//  GameCell.swift
+//  FavoriteCell.swift
 //  GameData
 //
-//  Created by Baki Uçan on 12.07.2023.
+//  Created by Baki Uçan on 16.07.2023.
 //
 
 import UIKit
 
-class GameCell: UICollectionViewCell {
-    static let reuseIdentifier = "GameCell"
+class FavoriteCell: UICollectionViewCell {
+    static let reuseIdentifier = "FavoriteCell"
 
     let imageView = UIImageView()
     let nameLabel = UILabel()
@@ -36,11 +36,12 @@ class GameCell: UICollectionViewCell {
           nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
           nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
 
-          ratingLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
+          ratingLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 0),
           ratingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
           ratingLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
           ratingLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
       ])
+
 
         nameLabel.font = UIFont.preferredFont(forTextStyle:.headline)
         ratingLabel.font = UIFont.preferredFont(forTextStyle:.subheadline)
@@ -86,7 +87,7 @@ class GameCell: UICollectionViewCell {
     func configure(with game: Game) {
         self.game = game
         nameLabel.text = game.name
-        ratingLabel.text = "Rating : \(game.rating ?? 0)/\(game.ratingTop ?? 0)"
+        ratingLabel.text = "Rating : \(game.rating ?? 0)"
 
         if let backgroundImage = game.backgroundImage, let url = URL(string: backgroundImage) {
             URLSession.shared.dataTask(with: url) { data, response, error in

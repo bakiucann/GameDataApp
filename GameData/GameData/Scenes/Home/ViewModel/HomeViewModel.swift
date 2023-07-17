@@ -13,7 +13,7 @@ class HomeViewModel {
     var games: [Game] = []
     var filteredGames: [Game] = []
 
-    var reloadTableView: (() -> Void)?
+    var reloadCollectionView: (() -> Void)?
 
     func fetchGames() {
         networkManager.getGames { [weak self] result in
@@ -21,20 +21,19 @@ class HomeViewModel {
             case .success(let games):
                 self?.games = games
                 self?.filteredGames = games
-                self?.reloadTableView?()
+                self?.reloadCollectionView?()
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
 
-    func filterGames(with searchText: String) {
-        if searchText.isEmpty {
-            filteredGames = games
-        } else {
-            filteredGames = games.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-        }
-
-        reloadTableView?()
-    }
+  func filterGames(with searchText: String) {
+      if searchText.isEmpty {
+          filteredGames = games
+      } else {
+          filteredGames = games.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+      }
+      reloadCollectionView?()
+  }
 }
