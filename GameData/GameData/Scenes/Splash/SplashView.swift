@@ -8,6 +8,7 @@
 import UIKit
 
 class SplashViewController: UIViewController {
+
     private let activityIndicator = UIActivityIndicatorView(style: .large)
 
     override func viewDidLoad() {
@@ -28,17 +29,15 @@ class SplashViewController: UIViewController {
 
         activityIndicator.startAnimating()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
             self?.activityIndicator.stopAnimating()
 
             if Reachability.isConnectedToNetwork() {
-                let homeViewController = HomeViewController()
-                let navigationController = UINavigationController(rootViewController: homeViewController)
-                navigationController.modalPresentationStyle = .fullScreen
-                self?.present(navigationController, animated: true, completion: nil)
+                let tabBarController = TabBarController()
+                self?.view.window?.rootViewController = tabBarController
             } else {
-                let alertController = UIAlertController(title: "No Internet Connection", message: "Please check your internet connection and try again.", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                let alertController = UIAlertController(title: "İnternet Bağlantısı Yok", message: "Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Tamam", style: .default, handler: nil))
                 self?.present(alertController, animated: true, completion: nil)
             }
         }

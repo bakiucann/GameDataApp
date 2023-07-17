@@ -5,8 +5,6 @@
 //  Created by Baki Uçan on 11.07.2023.
 //
 
-// GameDetailViewModel.swift
-
 import Foundation
 
 class GameDetailViewModel {
@@ -22,11 +20,9 @@ class GameDetailViewModel {
         self.game = game
     }
 
-  func addToFavorites() {
-      print(game)
-      coreDataManager.addToFavorites(game: game)
-  }
-
+    func addToFavorites() {
+        coreDataManager.addToFavorites(game: game)
+    }
 
     func removeFromFavorites() {
         coreDataManager.removeFromFavorites(gameId: game.id)

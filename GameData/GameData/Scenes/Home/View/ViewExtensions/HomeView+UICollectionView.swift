@@ -1,5 +1,5 @@
 //
-//  HomeViewController+UICollectionView.swift
+//  HomeView+UICollectionView.swift
 //  GameData
 //
 //  Created by Baki Uçan on 14.07.2023.

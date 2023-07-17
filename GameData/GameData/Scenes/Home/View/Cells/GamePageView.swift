@@ -55,13 +55,7 @@ class GamePageView: UIView {
         self.game = game
 
         if let backgroundImage = game.backgroundImage, let url = URL(string: backgroundImage) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                if let data = data, let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self.imageView.image = image
-                    }
-                }
-            }.resume()
+            imageView.loadImage(from: url, placeholder: nil)
         }
 
         titleLabel.text = game.name

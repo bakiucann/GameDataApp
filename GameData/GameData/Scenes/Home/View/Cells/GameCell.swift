@@ -83,20 +83,13 @@ class GameCell: UICollectionViewCell {
 
     private var game: Game?
 
-    func configure(with game: Game) {
-        self.game = game
-        nameLabel.text = game.name
-        ratingLabel.text = "Rating : \(game.rating ?? 0)/\(game.ratingTop ?? 0)"
+  func configure(with game: Game) {
+      self.game = game
+      nameLabel.text = game.name
+      ratingLabel.text = "Rating : \(game.rating ?? 0)/\(game.ratingTop ?? 0)"
 
-        if let backgroundImage = game.backgroundImage, let url = URL(string: backgroundImage) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-              if let data = data, let image = UIImage(data: data) {
-                  DispatchQueue.main.async {
-                      self.imageView.image = image
-                  }
-              }
-
-            }.resume()
-        }
-    }
+      if let backgroundImage = game.backgroundImage, let url = URL(string: backgroundImage) {
+          imageView.loadImage(from: url, placeholder: nil)
+      }
+  }
 }

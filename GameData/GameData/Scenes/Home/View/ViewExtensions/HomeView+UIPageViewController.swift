@@ -32,3 +32,12 @@ extension HomeViewController: UIPageViewControllerDataSource {
     }
 }
 
+extension HomeViewController: UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        guard let gamePageView = pendingViewControllers.first?.view.subviews.first as? GamePageView,
+              let gameIndex = viewModel.filteredGames.firstIndex(where: { $0.id == gamePageView.game.id }) else {
+            return
+        }
+        pageControl.currentPage = gameIndex
+    }
+}
