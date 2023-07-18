@@ -6,33 +6,20 @@
 //
 
 import UIKit
+import ReachabilityPackage
+import LoadingManager
 
-class SplashViewController: UIViewController {
-
-    private let activityIndicator = UIActivityIndicatorView(style: .large)
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        view.backgroundColor = .systemBackground
-        view.addSubview(activityIndicator)
-
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-    }
+class SplashViewController: UIViewController, ReachabilityProtocol {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        activityIndicator.startAnimating()
+        LoadingManager.shared.startLoading()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            self?.activityIndicator.stopAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            LoadingManager.shared.stopLoading()
 
-            if Reachability.isConnectedToNetwork() {
+            if self?.isConnectedToNetwork() == true {
                 let tabBarController = TabBarController()
                 self?.view.window?.rootViewController = tabBarController
             } else {
@@ -41,5 +28,9 @@ class SplashViewController: UIViewController {
                 self?.present(alertController, animated: true, completion: nil)
             }
         }
+    }
+
+    func isConnectedToNetwork() -> Bool {
+        return Reachability.isConnectedToNetwork()
     }
 }

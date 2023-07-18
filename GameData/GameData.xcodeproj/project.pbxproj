@@ -41,6 +41,8 @@
 		2DC8D0112A65F1F400F0D009 /* FavoritesView+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC8D0102A65F1F400F0D009 /* FavoritesView+SetupViews.swift */; };
 		2DC8D0132A65F62300F0D009 /* GameDetailView+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC8D0122A65F62300F0D009 /* GameDetailView+SetupViews.swift */; };
 		2DC8D0152A65F81600F0D009 /* HomeViewController+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC8D0142A65F81600F0D009 /* HomeViewController+SetupViews.swift */; };
+		2DC8D0182A669BD900F0D009 /* ReachabilityPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 2DC8D0172A669BD900F0D009 /* ReachabilityPackage */; };
+		2DC8D01F2A66A48400F0D009 /* LoadingManager in Frameworks */ = {isa = PBXBuildFile; productRef = 2DC8D01E2A66A48400F0D009 /* LoadingManager */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,8 @@
 		2DC8D0102A65F1F400F0D009 /* FavoritesView+SetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoritesView+SetupViews.swift"; sourceTree = "<group>"; };
 		2DC8D0122A65F62300F0D009 /* GameDetailView+SetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameDetailView+SetupViews.swift"; sourceTree = "<group>"; };
 		2DC8D0142A65F81600F0D009 /* HomeViewController+SetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+SetupViews.swift"; sourceTree = "<group>"; };
+		2DC8D0162A669BBB00F0D009 /* ReachabilityPackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ReachabilityPackage; path = ../../ReachabilityPackage; sourceTree = "<group>"; };
+		2DC8D01D2A66A45D00F0D009 /* LoadingManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LoadingManager; path = ../../LoadingManager; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DC8D0182A669BD900F0D009 /* ReachabilityPackage in Frameworks */,
+				2DC8D01F2A66A48400F0D009 /* LoadingManager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +135,8 @@
 		2D2FFEFD2A5DDA2600C4F9CF = {
 			isa = PBXGroup;
 			children = (
+				2DC8D01D2A66A45D00F0D009 /* LoadingManager */,
+				2DC8D0162A669BBB00F0D009 /* ReachabilityPackage */,
 				2D2FFF082A5DDA2600C4F9CF /* GameData */,
 				2D2FFF222A5DDA2900C4F9CF /* GameDataTests */,
 				2D2FFF2C2A5DDA2900C4F9CF /* GameDataUITests */,
@@ -403,6 +411,8 @@
 			);
 			name = GameData;
 			packageProductDependencies = (
+				2DC8D0172A669BD900F0D009 /* ReachabilityPackage */,
+				2DC8D01E2A66A48400F0D009 /* LoadingManager */,
 			);
 			productName = GameData;
 			productReference = 2D2FFF062A5DDA2600C4F9CF /* GameData.app */;
@@ -722,7 +732,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -750,7 +760,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -880,6 +890,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2DC8D0172A669BD900F0D009 /* ReachabilityPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ReachabilityPackage;
+		};
+		2DC8D01E2A66A48400F0D009 /* LoadingManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LoadingManager;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		2D2FFF122A5DDA2600C4F9CF /* GameData.xcdatamodeld */ = {
