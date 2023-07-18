@@ -7,6 +7,14 @@
 
 import Foundation
 
+protocol HomeViewModelProtocol {
+    var games: [Game] { get }
+    var filteredGames: [Game] { get }
+    var reloadCollectionView: (() -> Void)? { get set }
+    func fetchGames()
+    func filterGames(with searchText: String)
+}
+
 class HomeViewModel {
     private let networkManager = NetworkManager.shared
 

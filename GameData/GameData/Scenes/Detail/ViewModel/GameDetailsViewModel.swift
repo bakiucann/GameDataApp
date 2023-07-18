@@ -7,6 +7,12 @@
 
 import Foundation
 
+// MARK: - GameDetailViewModelDelegate Protocol
+protocol GameDetailViewModelDelegate: AnyObject {
+    func gameDetailFetched()
+    func gameDetailFetchFailed(with error: Error)
+}
+
 class GameDetailViewModel {
     private let networkManager = NetworkManager.shared
     private let coreDataManager = CoreDataManager.shared
@@ -15,6 +21,7 @@ class GameDetailViewModel {
     var gameDetail: GameDetail?
 
     var reloadView: (() -> Void)?
+    weak var delegate: GameDetailViewModelDelegate?
 
     init(game: Game) {
         self.game = game
@@ -38,8 +45,10 @@ class GameDetailViewModel {
             case .success(let gameDetail):
                 self?.gameDetail = gameDetail
                 self?.reloadView?()
+                self?.delegate?.gameDetailFetched()
             case .failure(let error):
                 print(error.localizedDescription)
+                self?.delegate?.gameDetailFetchFailed(with: error)
             }
         }
     }

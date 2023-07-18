@@ -8,29 +8,59 @@
 import XCTest
 @testable import GameData
 
-final class GameDataTests: XCTestCase {
+class GameDataTests: XCTestCase {
+    var homeViewModel: HomeViewModel!
+    var gameDetailViewModel: GameDetailViewModel!
+    var favoritesViewModel: FavoritesViewModel!
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
+        super.setUp()
+        homeViewModel = HomeViewModel()
+        gameDetailViewModel = GameDetailViewModel(game: Game(id: 1, name: "Test Game", released: "2023-07-11", backgroundImage: nil, rating: nil, ratingTop: nil))
+        favoritesViewModel = FavoritesViewModel()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        homeViewModel = nil
+        gameDetailViewModel = nil
+        favoritesViewModel = nil
+        super.tearDown()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testHomeViewModelFetchGames() {
+        let expectation = self.expectation(description: "Fetch Games")
+        homeViewModel.reloadCollectionView = {
+            expectation.fulfill()
         }
+        homeViewModel.fetchGames()
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertFalse(homeViewModel.games.isEmpty)
     }
 
+    func testHomeViewModelFilterGames() {
+        homeViewModel.games = [Game(id: 1, name: "Test Game", released: "2023-07-11", backgroundImage: nil, rating: nil, ratingTop: nil)]
+        homeViewModel.filterGames(with: "Test")
+        XCTAssertEqual(homeViewModel.filteredGames.count, 1)
+    }
+
+    func testGameDetailViewModelFetchGameDetail() {
+        let expectation = self.expectation(description: "Fetch Game Detail")
+        gameDetailViewModel.delegate = self
+        gameDetailViewModel.reloadView = {
+            expectation.fulfill()
+        }
+        gameDetailViewModel.fetchGameDetail()
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertNotNil(gameDetailViewModel.gameDetail)
+    }
+
+    func testFavoritesViewModelFetchFavoriteGames() {
+        favoritesViewModel.fetchFavoriteGames()
+        XCTAssertNotNil(favoritesViewModel.favoriteGames)
+    }
+}
+
+extension GameDataTests: GameDetailViewModelDelegate {
+    func gameDetailFetched() {}
+    func gameDetailFetchFailed(with error: Error) {}
 }
