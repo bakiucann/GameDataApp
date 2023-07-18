@@ -1,14 +1,12 @@
-//
-//  Reachability.swift
-//  GameData
-//
-//  Created by Baki Uçan on 12.07.2023.
-//
-
+// Reachability.swift
 import SystemConfiguration
 
-class Reachability {
-    static func isConnectedToNetwork() -> Bool {
+public protocol ReachabilityProtocol {
+    func isConnectedToNetwork() -> Bool
+}
+
+public class Reachability: ReachabilityProtocol {
+   public func isConnectedToNetwork() -> Bool {
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
         zeroAddress.sin_family = sa_family_t(AF_INET)
