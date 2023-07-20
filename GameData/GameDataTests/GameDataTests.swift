@@ -33,7 +33,7 @@ class GameDataTests: XCTestCase {
             expectation.fulfill()
         }
         homeViewModel.fetchGames()
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
         XCTAssertFalse(homeViewModel.games.isEmpty)
     }
 

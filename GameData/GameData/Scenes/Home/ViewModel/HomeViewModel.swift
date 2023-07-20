@@ -16,8 +16,7 @@ protocol HomeViewModelProtocol {
 }
 
 class HomeViewModel {
-    private let networkManager = NetworkManager.shared
-
+    private let networkManager: NetworkManagerProtocol = NetworkManager.shared
     var games: [Game] = []
     var filteredGames: [Game] = []
 

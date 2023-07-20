@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LoadingManager
 
 class GameCell: UICollectionViewCell {
     static let reuseIdentifier = "GameCell"
@@ -65,9 +66,11 @@ class GameCell: UICollectionViewCell {
         guard let game = game else {
             return
         }
-
+      LoadingManager.shared.startLoading()
         let gameDetailViewController = GameDetailViewController(game: game)
         findViewController()?.navigationController?.pushViewController(gameDetailViewController, animated: true)
+      LoadingManager.shared.stopLoading()
+
     }
 
     private func findViewController() -> UIViewController? {

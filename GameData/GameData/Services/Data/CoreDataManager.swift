@@ -7,6 +7,13 @@
 
 import CoreData
 
+protocol CoreDataManagerProtocol {
+    func addToFavorites(game: Game)
+    func removeFromFavorites(gameId: Int)
+    func isFavorite(gameId: Int) -> Bool
+    func fetchFavoriteGames() -> [Game]
+}
+
 class CoreDataManager {
     static let shared = CoreDataManager()
 

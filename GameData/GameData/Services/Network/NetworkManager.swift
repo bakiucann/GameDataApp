@@ -7,7 +7,12 @@
 
 import Foundation
 
-class NetworkManager {
+protocol NetworkManagerProtocol {
+    func getGames(completion: @escaping (Result<[Game], Error>) -> Void)
+    func getGameDetail(id: Int, completion: @escaping (Result<GameDetail, Error>) -> Void)
+}
+
+class NetworkManager: NetworkManagerProtocol {
     static let shared = NetworkManager()
 
     private init() {}

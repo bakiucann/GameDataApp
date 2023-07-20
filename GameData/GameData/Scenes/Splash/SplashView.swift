@@ -31,6 +31,7 @@ class SplashViewController: UIViewController, ReachabilityProtocol {
     }
 
     func isConnectedToNetwork() -> Bool {
-        return Reachability.isConnectedToNetwork()
+      let reachability = Reachability()
+      return reachability.isConnectedToNetwork()
     }
 }
