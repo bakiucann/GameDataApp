@@ -14,7 +14,7 @@ protocol FavoritesViewModelDelegate: AnyObject {
 }
 
 class FavoritesViewModel {
-    private let coreDataManager = CoreDataManager.shared
+   var coreDataManager: CoreDataManagerProtocol = CoreDataManager.shared
     var favoriteGames: [Game] = []
 
     var reloadTableView: (() -> Void)?

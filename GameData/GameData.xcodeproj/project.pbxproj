@@ -12,7 +12,6 @@
 		2D2FFF142A5DDA2600C4F9CF /* GameData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FFF122A5DDA2600C4F9CF /* GameData.xcdatamodeld */; };
 		2D2FFF162A5DDA2800C4F9CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D2FFF152A5DDA2800C4F9CF /* Assets.xcassets */; };
 		2D2FFF192A5DDA2800C4F9CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D2FFF172A5DDA2800C4F9CF /* LaunchScreen.storyboard */; };
-		2D2FFF242A5DDA2900C4F9CF /* GameDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FFF232A5DDA2900C4F9CF /* GameDataTests.swift */; };
 		2D2FFF2E2A5DDA2900C4F9CF /* GameDataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FFF2D2A5DDA2900C4F9CF /* GameDataUITests.swift */; };
 		2D2FFF302A5DDA2900C4F9CF /* GameDataUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FFF2F2A5DDA2900C4F9CF /* GameDataUITestsLaunchTests.swift */; };
 		2D2FFF3E2A5DDC0D00C4F9CF /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FFF3D2A5DDC0D00C4F9CF /* Game.swift */; };
@@ -32,6 +31,9 @@
 		2D2FFFB62A60C08500C4F9CF /* HomeView+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FFFB52A60C08500C4F9CF /* HomeView+UICollectionView.swift */; };
 		2D2FFFB82A60C09400C4F9CF /* HomeView+UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FFFB72A60C09400C4F9CF /* HomeView+UIPageViewController.swift */; };
 		2D2FFFBB2A61D80A00C4F9CF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FFFBA2A61D80A00C4F9CF /* CoreDataManager.swift */; };
+		2D4CBCD62A69B3020085BF26 /* HomeUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4CBCD52A69B3020085BF26 /* HomeUnitTests.swift */; };
+		2D4CBCD82A69BDC40085BF26 /* GameDetailUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4CBCD72A69BDC40085BF26 /* GameDetailUnitTests.swift */; };
+		2D4CBCDA2A69BDF50085BF26 /* FavoriteUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4CBCD92A69BDF50085BF26 /* FavoriteUnitTests.swift */; };
 		2DC8CFFF2A6439DC00F0D009 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC8CFFE2A6439DC00F0D009 /* FavoriteCell.swift */; };
 		2DC8D0012A655F7F00F0D009 /* HomeView+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC8D0002A655F7F00F0D009 /* HomeView+UISearchBarDelegate.swift */; };
 		2DC8D0072A65622500F0D009 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC8D0062A65622500F0D009 /* NetworkResponse.swift */; };
@@ -70,7 +72,6 @@
 		2D2FFF182A5DDA2800C4F9CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D2FFF1A2A5DDA2800C4F9CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D2FFF1F2A5DDA2900C4F9CF /* GameDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D2FFF232A5DDA2900C4F9CF /* GameDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataTests.swift; sourceTree = "<group>"; };
 		2D2FFF292A5DDA2900C4F9CF /* GameDataUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameDataUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D2FFF2D2A5DDA2900C4F9CF /* GameDataUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataUITests.swift; sourceTree = "<group>"; };
 		2D2FFF2F2A5DDA2900C4F9CF /* GameDataUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -91,6 +92,9 @@
 		2D2FFFB52A60C08500C4F9CF /* HomeView+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeView+UICollectionView.swift"; sourceTree = "<group>"; };
 		2D2FFFB72A60C09400C4F9CF /* HomeView+UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeView+UIPageViewController.swift"; sourceTree = "<group>"; };
 		2D2FFFBA2A61D80A00C4F9CF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		2D4CBCD52A69B3020085BF26 /* HomeUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUnitTests.swift; sourceTree = "<group>"; };
+		2D4CBCD72A69BDC40085BF26 /* GameDetailUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailUnitTests.swift; sourceTree = "<group>"; };
+		2D4CBCD92A69BDF50085BF26 /* FavoriteUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteUnitTests.swift; sourceTree = "<group>"; };
 		2DC8CFFE2A6439DC00F0D009 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		2DC8D0002A655F7F00F0D009 /* HomeView+UISearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeView+UISearchBarDelegate.swift"; sourceTree = "<group>"; };
 		2DC8D0062A65622500F0D009 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
@@ -168,7 +172,9 @@
 		2D2FFF222A5DDA2900C4F9CF /* GameDataTests */ = {
 			isa = PBXGroup;
 			children = (
-				2D2FFF232A5DDA2900C4F9CF /* GameDataTests.swift */,
+				2D4CBCD52A69B3020085BF26 /* HomeUnitTests.swift */,
+				2D4CBCD72A69BDC40085BF26 /* GameDetailUnitTests.swift */,
+				2D4CBCD92A69BDF50085BF26 /* FavoriteUnitTests.swift */,
 			);
 			path = GameDataTests;
 			sourceTree = "<group>";
@@ -562,7 +568,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D2FFF242A5DDA2900C4F9CF /* GameDataTests.swift in Sources */,
+				2D4CBCD82A69BDC40085BF26 /* GameDetailUnitTests.swift in Sources */,
+				2D4CBCDA2A69BDF50085BF26 /* FavoriteUnitTests.swift in Sources */,
+				2D4CBCD62A69B3020085BF26 /* HomeUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

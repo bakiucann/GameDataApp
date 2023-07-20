@@ -14,8 +14,8 @@ protocol GameDetailViewModelDelegate: AnyObject {
 }
 
 class GameDetailViewModel {
-    private let networkManager = NetworkManager.shared
-    private let coreDataManager = CoreDataManager.shared
+  var networkManager: NetworkManagerProtocol = NetworkManager.shared
+  var coreDataManager: CoreDataManagerProtocol = CoreDataManager.shared
 
     var game: Game
     var gameDetail: GameDetail?

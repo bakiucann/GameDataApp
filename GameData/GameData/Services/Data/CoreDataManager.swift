@@ -14,7 +14,7 @@ protocol CoreDataManagerProtocol {
     func fetchFavoriteGames() -> [Game]
 }
 
-class CoreDataManager {
+class CoreDataManager: CoreDataManagerProtocol {
     static let shared = CoreDataManager()
 
     private init() {}
