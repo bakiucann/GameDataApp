@@ -79,3 +79,4 @@ extension HomeViewController: UISearchBarDelegate {
         handleEmptyState()
     }
 }
+

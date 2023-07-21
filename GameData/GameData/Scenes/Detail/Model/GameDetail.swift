@@ -5,8 +5,6 @@
 //  Created by Baki Uçan on 11.07.2023.
 //
 
-// GameDetail.swift
-
 import Foundation
 
 struct GameDetail: Codable {
