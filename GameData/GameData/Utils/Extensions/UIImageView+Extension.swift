@@ -14,18 +14,13 @@ extension UIImageView {
             self.image = placeholderImage
         }
 
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                print("Error loading image: \(error?.localizedDescription ?? "Unknown error")")
-                return
-            }
+        ImageManager.shared.loadImage(from: url) { [weak self] image in
+            guard let self = self else { return }
 
             DispatchQueue.main.async {
-                if let downloadedImage = UIImage(data: data) {
-                    self.image = downloadedImage
-                }
+                self.image = image
             }
-        }.resume()
+        }
     }
 
 }

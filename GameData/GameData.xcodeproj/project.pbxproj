@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D1AB0652A6A832100CAB722 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1AB0642A6A832100CAB722 /* ImageManager.swift */; };
 		2D2FFF0A2A5DDA2600C4F9CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FFF092A5DDA2600C4F9CF /* AppDelegate.swift */; };
 		2D2FFF0C2A5DDA2600C4F9CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FFF0B2A5DDA2600C4F9CF /* SceneDelegate.swift */; };
 		2D2FFF142A5DDA2600C4F9CF /* GameData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FFF122A5DDA2600C4F9CF /* GameData.xcdatamodeld */; };
@@ -64,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D1AB0642A6A832100CAB722 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		2D2FFF062A5DDA2600C4F9CF /* GameData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D2FFF092A5DDA2600C4F9CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D2FFF0B2A5DDA2600C4F9CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				2DC8D00A2A6570C700F0D009 /* UIImageView+Extension.swift */,
+				2D1AB0642A6A832100CAB722 /* ImageManager.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				2D2FFF0A2A5DDA2600C4F9CF /* AppDelegate.swift in Sources */,
 				2D2FFF0C2A5DDA2600C4F9CF /* SceneDelegate.swift in Sources */,
 				2DC8D0072A65622500F0D009 /* NetworkResponse.swift in Sources */,
+				2D1AB0652A6A832100CAB722 /* ImageManager.swift in Sources */,
 				2DC8CFFF2A6439DC00F0D009 /* FavoriteCell.swift in Sources */,
 				2D2FFF642A5EBD5A00C4F9CF /* GamePageView.swift in Sources */,
 				2D2FFF582A5DFACA00C4F9CF /* Constants.swift in Sources */,

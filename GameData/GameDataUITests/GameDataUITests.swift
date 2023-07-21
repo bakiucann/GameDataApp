@@ -9,46 +9,46 @@ import XCTest
 
 final class GameDataUITests: XCTestCase {
 
+    // Tüm işlevlerin test edildiği ana test fonksiyonu.
     func testAllFunctions() throws {
 
-      let app = XCUIApplication()
-      app.launch()
-      let scrollViewsQuery = app.scrollViews
-      let element = scrollViewsQuery.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
-      element.swipeLeft()
-      element.swipeLeft()
+        // Uygulamayı başlatma.
+        let app = XCUIApplication()
+        app.launch()
 
-      let gamedataHomeviewNavigationBar = app.navigationBars["GameData.HomeView"]
-      let searchGamesSearchField = gamedataHomeviewNavigationBar.searchFields["Search Games"]
-      searchGamesSearchField.tap()
+        // Ana ekranı bulma.
+        let element = app.scrollViews.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
 
-      let bKey = app/*@START_MENU_TOKEN@*/.keys["B"]/*[[".keyboards.keys[\"B\"]",".keys[\"B\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-      bKey.tap()
+        // Ekranda sağa kaydırma (swipe) işlemleri.
+        element.swipeLeft()
+        element.swipeLeft()
 
-      let iKey = app/*@START_MENU_TOKEN@*/.keys["i"]/*[[".keyboards.keys[\"i\"]",".keys[\"i\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-      iKey.tap()
+        // Portal 2 oyununun detay sayfasına gitme ve favorilere ekleme işlemi.
+        element.tap()
+        let portal2NavigationBar = app.navigationBars["Portal 2"]
+        let loveButton = portal2NavigationBar.buttons["love"]
+        loveButton.tap()
 
-      let oKey = app/*@START_MENU_TOKEN@*/.keys["o"]/*[[".keyboards.keys[\"o\"]",".keys[\"o\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-      oKey.tap()
+        // Alt tab bardaki "Favorites" (Favoriler) sekmesine geçme.
+        let tabBar = app.tabBars["Tab Bar"]
+        let favoritesButton = tabBar.buttons["Favorites"]
+        favoritesButton.tap()
 
-      let sKey = app/*@START_MENU_TOKEN@*/.keys["s"]/*[[".keyboards.keys[\"s\"]",".keys[\"s\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-      sKey.tap()
+        // "Home" (Ana Sayfa) sekmesine geçme.
+        let homeButton = tabBar.buttons["Home"]
+        homeButton.tap()
 
-      app.collectionViews.cells.otherElements.containing(.staticText, identifier:"BioShock Infinite").element.tap()
+        // Favorilere eklenen oyunu favorilerden çıkarma işlemi ve tekrar favorilere ekleme.
+        loveButton.tap()
+        app.alerts["Remove from Favorites"].scrollViews.otherElements.buttons["Remove"].tap()
+        favoritesButton.tap()
+        homeButton.tap()
+        loveButton.tap()
 
-      let bioshockInfiniteNavigationBar = app.navigationBars["BioShock Infinite"]
-      let loveButton = bioshockInfiniteNavigationBar.buttons["love"]
-      loveButton.tap()
-      
-      let tabBar = app.tabBars["Tab Bar"]
-      tabBar.buttons["Favorites"].tap()
-      tabBar.buttons["Home"].tap()
-      loveButton.tap()
-      bioshockInfiniteNavigationBar.buttons["Back"].tap()
-      searchGamesSearchField.buttons["Clear text"].tap()
-      gamedataHomeviewNavigationBar/*@START_MENU_TOKEN@*/.staticTexts["Cancel"]/*[[".buttons[\"Cancel\"].staticTexts[\"Cancel\"]",".staticTexts[\"Cancel\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-      app/*@START_MENU_TOKEN@*/.collectionViews.containing(.other, identifier:"Vertical scroll bar, 4 pages").element/*[[".collectionViews.containing(.other, identifier:\"Horizontal scroll bar, 1 page\").element",".collectionViews.containing(.other, identifier:\"Vertical scroll bar, 4 pages\").element"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
+        // Portal 2 oyununun detay sayfasından geri dönme işlemi.
+        portal2NavigationBar.buttons["Back"].tap()
 
-
+        // Ana sayfada aşağı doğru kaydırma işlemi.
+        app.collectionViews.containing(.other, identifier:"Vertical scroll bar, 4 pages").element.swipeUp()
     }
 }
